@@ -69,7 +69,7 @@ servlet-context.xml
 	</context:component-scan>
 	
 ```
-- bookMng 패키지 안에 하위패키지를 검색해 @Contoller,@Service를 포함하는 클래스를 Bean으로 자동 등록
+- bookMng 패키지 안에 하위패키지를 검색해 @Controller,@Service를 포함하는 클래스를 Bean으로 자동 등록
 
 ```java
 context-datasource.xml
@@ -113,3 +113,4 @@ context-mapper.xml
 ```
 - 도서,회원의 상세정보에서 정보를 수정하기 전에 bookID,userID 값을 기준으로  DB에 접근하여 정보를 수정해야 하기 때문에 readonly 하여 고정.
 - 정보를 (CRUD) 할 때 입력란에 공백이 없게끔 required 설정
+
