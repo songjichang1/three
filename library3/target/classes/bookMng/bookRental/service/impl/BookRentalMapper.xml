@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="bookMng.bookRental.service.impl.BookRentalMapper">
+
+	<select id="getLists"
+		resultType="bookMng.bookRental.dto.BookRentalDTO">
+
+		SELECT
+		A.USERID
+		,A.BOOKID
+		,C.BOOKTITLE
+		,C.BOOKAUTHOR
+		,C.BOOKPRICE
+		FROM BOOKRENTAL A
+		INNER JOIN
+		USER1 B
+		ON(A.USERID = B.USERID)
+		INNER JOIN
+		BOOK C
+		ON(A.BOOKID = C.BOOKID)
+
+	</select>
+
+	<insert id="bookRental"
+		parameterType="bookMng.bookRental.dto.BookRentalDTO">
+
+		INSERT INTO
+		BOOKRENTAL A
+		(A.bookID,A.userID)
+		VALUES
+		(#{bookID},#{userID})
+
+	</insert>
+
+	<delete id="returnBookRental"
+		parameterType="bookMng.bookRental.dto.BookRentalDTO">
+
+		DELETE
+		FROM BOOKRENTAL A
+		WHERE 1=1
+		AND
+		A.USERID=#{userID}
+
+	</delete>
+
+	<delete id="returnBookRental1"
+		parameterType="bookMng.bookRental.dto.BookRentalDTO">
+
+		DELETE
+		FROM
+		BOOKRENTAL A
+		WHERE 1=1
+		AND A.BOOKID=#{bookID}
+
+	</delete>
+
+	<delete id="returnBookRental2"
+		parameterType="bookMng.bookRental.dto.BookRentalDTO">
+
+		DELETE
+		FROM
+		BOOKRENTAL A
+		WHERE 1=1
+		AND A.USERID=#{userID}
+
+	</delete>
+</mapper>

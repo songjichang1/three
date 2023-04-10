@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="bookMng.user.service.impl.UserMapper">
+
+	<!--resultType은 select 그결과를 묶어줄 때 -->
+	<select id="getLists" resultType="bookMng.user.dto.UserDTO">
+
+		SELECT
+		      A.USERID
+		      ,A.USERNAME
+		      ,A.USERSEX
+		      ,A.USERAGE
+		      ,A.USERPHONE
+		FROM USER1 A
+		 
+
+	</select>
+
+    <insert id="userInsert" parameterType="bookMng.user.dto.UserDTO">
+	   
+	   INSERT INTO USER1 A
+	   (A.USERID,A.USERNAME,A.USERSEX,A.USERAGE,A.USERPHONE)
+	   values(#{userID},#{userName},#{userSex},#{userAge},#{userPhone})
+	  
+	</insert>
+	
+	<select id="updateUserPage" resultType="bookMng.user.dto.UserDTO">
+	   
+	   SELECT 
+	         A.USERID
+	         ,A.USERNAME
+	         ,A.USERSEX
+	         ,A.USERAGE
+	         ,A.USERPHONE
+	    FROM USER1 A 
+	    WHERE 1=1
+	    AND A.USERID=#{userID}
+	 
+	</select>
+	
+	<update id="updateUser" parameterType="bookMng.user.dto.UserDTO">
+	   
+	   UPDATE USER1 A
+	   SET 
+	      A.USERNAME=#{userName},
+	      ,A.USERSEX=#{userSex},
+	      ,A.USERAGE=#{userAge},
+	      ,A.USERPHONE=#{userPhone}
+	   WHERE 1=1
+	   AND A.USERID=#{userID}
+	
+	</update>
+	
+	<delete id="deleteUser" parameterType="bookMng.user.dto.UserDTO">
+	
+	   DELETE 
+	   fROM USER1 A
+	   WHERE 1=1 
+	   AND A.USERID=#{userID}
+	
+	</delete>
+
+
+</mapper>

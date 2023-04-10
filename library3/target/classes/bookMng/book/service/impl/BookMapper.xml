@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="bookMng.book.service.impl.BookMapper">
+
+	<!--resultType은 select 그결과를 묶어줄 때 -->
+	<select id="getLists" resultType="bookMng.book.dto.BookDTO">
+		
+		SELECT
+		       A.BOOKID
+		       , A.BOOKTITLE
+		       , A.BOOKAUTHOR
+		       , A.BOOKPRICE
+		FROM BOOK A
+		
+	</select>
+	
+	<insert id="bookInsert" parameterType="bookMng.book.dto.BookDTO">
+	   
+	   INSERT INTO BOOK A
+	   (A.BOOKID,A.BOOKTITLE,A.BOOKAUTHOR,A.BookPRICE)
+	   values(#{bookID},#{bookTitle},#{bookAuthor},#{bookPrice})
+	  
+	</insert>
+	
+	<select id="updateBookPage" resultType="bookMng.book.dto.BookDTO">
+	   
+	   SELECT
+	          A.BOOKID
+	          ,A.BOOKTITLE
+	          ,A.BOOKAUTHOR
+	          ,A.BOOKPRICE
+	          
+	   FROM BOOK A 
+	   WHERE 1=1
+	   AND A.BOOKID=#{bookID}
+	 
+	</select>
+	
+	<update id="updateBook" parameterType="bookMng.book.dto.BookDTO">
+	   
+	   UPDATE BOOK A 
+	   SET 
+	   A.BOOKTITLE=#{bookTitle},
+	   A.BOOKAUTHOR=#{bookAuthor},
+	   A.BookPRICE=#{bookPrice}
+	   WHERE 1=1
+	   AND A.BOOKID=#{bookID}
+	
+	</update>
+	
+	<delete id="deleteBook" parameterType="bookMng.book.dto.BookDTO">
+	
+	   DELETE
+	   FROM BOOK A
+	   WHERE 1=1 
+	   AND A.BOOKID=#{bookID}
+	
+	</delete>
+	
+	
+</mapper>
